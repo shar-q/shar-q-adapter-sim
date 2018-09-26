@@ -1,0 +1,32 @@
+{
+  "name": "shar-q-adapter-sim",
+  "version": "0.1.0",
+  "description": "JWE and JWS tutorial for the VICINITY P2P network",
+  "main": "adapter-sim.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shar-q/shar-q-adapter-sim.git"
+  },
+  "keywords": [
+    "JWE",
+    "JWS",
+    "Shar-Q",
+    "VICINITY"
+  ],
+  "author": "Viktor Oravec (bAvenir)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shar-q/shar-q-adapter-sim/issues"
+  },
+  "homepage": "https://github.com/shar-q/shar-q-adapter-sim#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "log4js": "^3.0.5",
+    "minimist": "^1.2.0",
+    "node-jose": "^1.0.0",
+    "request": "^2.88.0"
+  }
+}
