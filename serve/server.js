@@ -14,15 +14,6 @@ module.exports.runServer = function (port, td, isSigning, isEncrypt) {
     logger.error('I had a problem to read thing description!')
   } else {
     var app = express()
-    // app.get('/api/objects/:oid/properties/:pid', function (req, res) {
-    //   var responseValue = ''
-    //   object.properties.forEach(function (element) {
-    //     if (element === req.pid) {
-    //       responseValue = element.read_link.response
-    //     }
-    //   })
-    //   res.send(responseValue)
-    // })
     app.use(function (req, res, next) {
       logger.debug('Received request')
       next()

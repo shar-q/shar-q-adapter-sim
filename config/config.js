@@ -2,8 +2,8 @@ var config = {
   gateway: {
     host: 'localhost',
     port: '8181',
-    user: 'e354cb68-4d79-4d4b-a822-1839e5436b64',
-    password: 'test'
+    adid: 'e354cb68-4d79-4d4b-a822-1839e5436b64',
+    adid_password: 'test'
   },
   adapter: {
     port: 3000,
