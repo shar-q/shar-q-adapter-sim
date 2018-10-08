@@ -1,6 +1,7 @@
 var request = require('request')
+var fs = require('fs')
 
-exports.loginInGatewayAPI = function (host, port, user, password) {
+exports.loginAdapterInGatewayAPI = function (host, port, user, password) {
   var options = { method: 'GET',
     url: 'http://' + host + ':' + port + '/api/objects/login',
     headers:
@@ -11,4 +12,11 @@ exports.loginInGatewayAPI = function (host, port, user, password) {
 
     console.log(body)
   })
+}
+
+exports.loginDeviceInGatewayAPI = function (host, port, credentialFileName){
+  var rawdata = fs.readFileSync(credentialFileName)
+  var credentialData = JSON.parse(rawdata)
+
+  exports.loginAdapterInGatewayAPI(host, port, credentialData.oid, credentialData.password)
 }

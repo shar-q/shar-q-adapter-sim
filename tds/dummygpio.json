@@ -3,6 +3,11 @@
     "adapter-id": "e354cb68-4d79-4d4b-a822-1839e5436b64",
     "name": "The example description of dummy gpio",
     "type": "core:Device",
+    "security": {
+        "scheme": "cert",
+        "description": "Public certificate for bavenir devices",
+        "identity": ""
+    },
     "properties": [
         {
             "pid": "onoff",

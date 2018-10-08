@@ -1,0 +1,69 @@
+{
+    "infrastructure-id": "dummygpio2",
+    "adapter-id": "e354cb68-4d79-4d4b-a822-1839e5436b64",
+    "name": "The example description of dummy gpio 2",
+    "type": "core:Device",
+    "security": {
+        "scheme": "cert",
+        "description": "Public certificate for bavenir devices",
+        "identity": "-----BEGIN CERTIFICATE-----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-----END CERTIFICATE-----"
+    },
+    "properties": [
+        {
+            "pid": "onoff",
+            "monitors": "adap:OnOff",
+            "read_link": {
+                "href": "/device/{oid}/property/{pid}",
+                "output": {
+                    "type": "object",
+                    "field": [
+                        {
+                            "name": "property",
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "name": "value",
+                            "schema": {
+                                "type": "bolean"
+                            }
+                        }
+                    ]
+                },
+		"response": { "property": "onoff", "value": "true" }
+            },
+            "write_link": {
+                "href": "/gpio/set-onoff/{oid}",
+                "input": {
+                    "type": "object",
+                    "field": [
+                        {
+                            "name": "property",
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "name": "value",
+                            "schema": {
+                                "type": "bolean"
+                            }
+                        }
+                    ]
+                },
+                "output": {
+                    "type": "object",
+                    "field": [
+                        {
+                            "name": "success",
+                            "schema": {
+                                "type": "boolean"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

@@ -1,43 +1,39 @@
-var request = required('request')
+var request = require('request')
+var fs = require('fs')
+var helper_io = require('../helpers/io.js')
+var log4js = require('log4js')
+var logger = log4js.getLogger()
 
 //Function performing the registration of the thing description
-exports.sendRegistration = function (agentId, tdFile){
+exports.sendRegistration = function (adid, adid_password, tdFile, storageDir){
   var rawTD = fs.readFileSync(tdFile)
   var objectTD = JSON.parse(rawTD)
 
-  if (object == null || object === {} || object ==='') {
+  if (objectTD == null || objectTD === {} || objectTD ==='') {
     logger.error('I had a problem to read thing description!')
   } else {
 
     var options = { method: 'POST',
-      url: 'http://localhost:8181/api/agents/' + agentId + '/objects',
+      url: 'http://localhost:8181/api/agents/' + adid + '/objects',
       headers:
-       { Authorization: 'Basic ZTM1NGNiNjgtNGQ3OS00ZDRiLWE4MjItMTgzOWU1NDM2YjY0OnRlc3Q=',
+       {
+         Authorization: 'Basic ' + Buffer.from(adid + ':' + adid_password).toString('base64'),
          'Content-Type': 'application/json' },
       body:
         {
-          adid: agentId,
-          thingDescriptions: [objecTD]},
-      json: true };
+          adid: adid,
+          thingDescriptions: [objectTD]},
+      json: true
+    };
 
     request(options, function (error, response, body) {
-      if (error) throw new Error(error);
+      if (error) {
+        logger.error(error.stack + ' - ' + error.message )
+      } else {
+        logger.debug(body)
+        helper_io.serializeOidSecretes(body.message, storageDir)
+      }
 
-      console.log(body);
     });
   }
-  return expandedThingDescription
 }
-
-var request = require("request");
-
-var options = { method: 'POST',
-  url: 'http://localhost:8181/api/agents/e354cb68-4d79-4d4b-a822-1839e5436b64/objects',
-  headers:
-   { 'Postman-Token': 'cae788d9-ce7d-4c3e-8446-3238d3688075',
-     'Cache-Control': 'no-cache',
-     Authorization: 'Basic ZTM1NGNiNjgtNGQ3OS00ZDRiLWE4MjItMTgzOWU1NDM2YjY0OnRlc3Q=',
-     'Content-Type': 'application/json' },
-  body:
-   ,
-  json: true };
