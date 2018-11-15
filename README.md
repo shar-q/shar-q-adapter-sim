@@ -108,15 +108,97 @@ To make example working we need to have at least two devices to be registred in 
 
 The result (see the folowing example) of the registration request will be stored in ```config.adapter.storage``` directory under the name of ```<infrastructure-id>-<oid>.json```. 
 
+The registration issues following command to GWAPI:
+
+```
+curl -X POST \
+  http://localhost:8181/api/agents/e354cb68-4d79-4d4b-a822-1839e5436b64/objects \
+  -H ': ' \
+  -H 'Content-Type: application/json' \
+  -H 'cache-control: no-cache' \
+  -d '{
+	"adid":"e354cb68-4d79-4d4b-a822-1839e5436b64", 
+	"thingDescriptions": [{
+	    "infrastructure-id": "dummygpio",
+	    "adapter-id": "e354cb68-4d79-4d4b-a822-1839e5436b64",
+	    "name": "The example description of dummy gpio",
+	    "type": "core:Device",
+	    "properties": [
+	        {
+	            "pid": "onoff",
+	            "monitors": "adap:OnOff",
+	            "read_link": {
+	                "href": "/device/{oid}/property/{pid}",
+	                "output": {
+	                    "type": "object",
+	                    "field": [
+	                        {
+	                            "name": "property",
+	                            "schema": {
+	                                "type": "string"
+	                            }
+	                        },
+	                        {
+	                            "name": "value",
+	                            "schema": {
+	                                "type": "bolean"
+	                            }
+	                        }
+	                    ]
+	                }
+	            },
+	            "write_link": {
+	                "href": "/gpio/set-onoff/{oid}",
+	                "input": {
+	                    "type": "object",
+	                    "field": [
+	                        {
+	                            "name": "property",
+	                            "schema": {
+	                                "type": "string"
+	                            }
+	                        },
+	                        {
+	                            "name": "value",
+	                            "schema": {
+	                                "type": "bolean"
+	                            }
+	                        }
+	                    ]
+	                },
+	                "output": {
+	                    "type": "object",
+	                    "field": [
+	                        {
+	                            "name": "success",
+	                            "schema": {
+	                                "type": "boolean"
+	                            }
+	                        }
+	                    ]
+	                }
+	            }
+	        }
+	    ]
+	}]
+}'
+```
+with response:
+
 ```
 {
-  "oid":"116ccf31-b8ec-4f11-8307-7ce507f7a413",
-  "password":"MknZdf6fkmp0TeXdasdcasdca8UQLSgUo5g9Aasdcasdca/o3BAnGlatorqBg=",
-  "infrastructure-id":"dummygpio",
-  "nm-id":"5bacb926aaf3155f9f95ac0f",
-  "name": "The example description of dummy gpio",
-  "error":false
- }
+    "error": false,
+    "message": [
+        {
+            "oid": "131e5cea-9c09-4830-8d28-9761d7a796c3",
+            "password": "kAWFytnC5oZF6jeRKw798dIRkwJ2+5jL2bZz+BGw9IY=",
+            "infrastructure-id": "dummygpio",
+            "nm-id": "5bed87ebc958c8762baefd5d",
+            "name": "The example description of dummy gpio",
+            "error": false
+        }
+    ]
+}
 ```
 
 This will be used by the adapter later during the login of the both device.
