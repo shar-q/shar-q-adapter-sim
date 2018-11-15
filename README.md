@@ -99,14 +99,27 @@ The adapter simulator need to login in SHAR-Q P2P network to perform device/serv
   node adapter-sim login
 ```
 ### 3. Register simulated devices
-To make example working we need to have at least two devices to be registred in SHAR-Q P2P network. For this simple exercise two GPIO devices should enough. To register a device we need to run the registration command in adapter simulator.
+To make example working we need to have at least two devices to be registred in SHAR-Q P2P network. For this simple exercise two GPIO devices should enough. You can find it in ```tds``` directory in this repository. To register a device we need to run the registration command in adapter simulator.
 
 ```
   node adapter-sim register -i tds/dummygpio.json
   node adapter-sim register -i tds/dummygpio2.json
 ```
 
-The result of the registration request will be stored in ```config.adapter.storage``` directory. This will be used by the adapter later during the login of the both device.
+The result (see the folowing example) of the registration request will be stored in ```config.adapter.storage``` directory under the name of ```<infrastructure-id>-<oid>.json```. 
+
+```
+{
+  "oid":"116ccf31-b8ec-4f11-8307-7ce507f7a413",
+  "password":"MknZdf6fkmp0TeXdasdcasdca8UQLSgUo5g9Aasdcasdca/o3BAnGlatorqBg=",
+  "infrastructure-id":"dummygpio",
+  "nm-id":"5bacb926aaf3155f9f95ac0f",
+  "name": "The example description of dummy gpio",
+  "error":false
+ }
+```
+
+This will be used by the adapter later during the login of the both device.
 
 
 ### 4. Login simulated device
